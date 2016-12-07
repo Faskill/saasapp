@@ -28,13 +28,13 @@ $(document).on('turbolinks:load', function(){
     }
     
     //Validate CVC number.
-    if(!Stripe.card.validateCVC(cvcNum)){
+    else if(!Stripe.card.validateCVC(cvcNum)){
      error = true;
      alert('The security code seems invalid');
     }
     
     //Validate expiration date.
-    if(!Stripe.card.validateExpiry(expMonth, expYear)){
+    else if(!Stripe.card.validateExpiry(expMonth, expYear)){
      error = true;
      alert('The expiration date appears to be invalid');
     }
