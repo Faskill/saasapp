@@ -31,14 +31,20 @@ gem 'jbuilder', '2.5.0'
 # Use Twitter Bootstrap Library for front-end UI and layout
 gem 'bootstrap-sass', '3.3.7'
 
-#Use Font Awesome Sass gem for adding icons
+# Use Font Awesome Sass gem for adding icons
 gem 'font-awesome-sass', '4.6.2'
 
-#Use Hirb for better database table display in console
+# Use Hirb for better database table display in console
 gem 'hirb', '0.7.3'
 
-#Use Devise for user authentification
+# Use Devise for user authentification
 gem 'devise', '4.2.0'
+
+# Use Stripe for Payment Processing
+gem 'stripe', '1.48.0'
+
+# Use Figaro for ENV variables
+gem 'figaro', '1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
