@@ -16,14 +16,35 @@ $(document).on('turbolinks:load', function(){
     var ccNum = $('#card_number').val(),
         cvcNum = $('#card_code').val(),
         expMonth = $('#card_month').val(),
-        expYear = $('#card_year').val();
-        
+        expYear = $('#card_year').val(),
+        pw = $('#user_password').val(),
+        pw_conf = $('#user_password_confirmation').val(),
+        error = false,
+        error_message = "";
     //Use Stripe JS library to check for card errors.
     //Validate card information
-    if(!Stripe.card.validateCardNumber(ccNum) || !Stripe.card.validateCVC(cvcNum) || !Stripe.card.validateExpiry(expMonth, expYear) ){
-     $('.flash-container').html("<div class= 'alert alert-dismissable alert-danger'><button type='button' class='close' data-dismiss='alert'>×</button>Your card information is invalid</div>");  
-     submitBtn.prop('disabled',false).val("Sign Up");
+    
+    
+    if ( pw.length <= 5) {
+      error = true;
+      error_message = "Your password is too short. Please enter a password with at least 6 characters.";
     }
+    
+    else if (pw != pw_conf) {
+      error = true;
+      error_message = "Your password doesn't match the password confirmation";
+    }
+    
+    else if(!Stripe.card.validateCardNumber(ccNum) || !Stripe.card.validateCVC(cvcNum) || !Stripe.card.validateExpiry(expMonth, expYear) ){
+      error = true;
+      error_message = "Your card information is invalid";
+    }
+    
+    if (error) {
+      $('.flash-container').html("<div class= 'alert alert-dismissable alert-danger'><button type='button' class='close' data-dismiss='alert'>×</button>"+error_message+"</div>");
+      submitBtn.prop('disabled',false).val("Sign Up");
+    }
+      
     else {
       //Send card info to Stripe.
       Stripe.createToken({
