@@ -21,10 +21,10 @@ $(document).on('turbolinks:load', function(){
         pw_conf = $('#user_password_confirmation').val(),
         error = false,
         error_message = "";
-    //Use Stripe JS library to check for card errors.
-    //Validate card information
     
     
+    // Added custom password validation so nothing is sent to Stripe if the 
+    // password is incorrect
     if ( pw.length <= 5) {
       error = true;
       error_message = "Your password is too short. Please enter a password with at least 6 characters.";
@@ -35,6 +35,8 @@ $(document).on('turbolinks:load', function(){
       error_message = "Your password doesn't match the password confirmation";
     }
     
+    //Use Stripe JS library to check for card errors.
+    //Validate card information
     else if(!Stripe.card.validateCardNumber(ccNum) || !Stripe.card.validateCVC(cvcNum) || !Stripe.card.validateExpiry(expMonth, expYear) ){
       error = true;
       error_message = "Your card information is invalid";
