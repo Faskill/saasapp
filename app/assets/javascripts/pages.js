@@ -1,4 +1,4 @@
 /* global $ */
 $(document).on('turbolinks:load',function(){
-  $('.alert').delay(1000).fadeOut(4000);
+  $('.pages .alert').delay(1000).fadeOut(4000);
 });

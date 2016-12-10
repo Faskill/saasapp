@@ -19,29 +19,10 @@ $(document).on('turbolinks:load', function(){
         expYear = $('#card_year').val();
         
     //Use Stripe JS library to check for card errors.
-    var error = false;
-    
-    //Validate card number.
-    if(!Stripe.card.validateCardNumber(ccNum)){
-     error = true;
-     alert('The credit card number seems invalid');
-    }
-    
-    //Validate CVC number.
-    else if(!Stripe.card.validateCVC(cvcNum)){
-     error = true;
-     alert('The security code seems invalid');
-    }
-    
-    //Validate expiration date.
-    else if(!Stripe.card.validateExpiry(expMonth, expYear)){
-     error = true;
-     alert('The expiration date appears to be invalid');
-    }
-    
-    if(error){
-      //If there are card errors, don't send to Stripe.
-      submitBtn.prop('disabled',false).val("Sign Up");
+    //Validate card information
+    if(!Stripe.card.validateCardNumber(ccNum) || !Stripe.card.validateCVC(cvcNum) || !Stripe.card.validateExpiry(expMonth, expYear) ){
+     $('.flash-container').html("<div class= 'alert alert-dismissable alert-danger'><button type='button' class='close' data-dismiss='alert'>×</button>Your card information is invalid</div>");  
+     submitBtn.prop('disabled',false).val("Sign Up");
     }
     else {
       //Send card info to Stripe.
