@@ -15,8 +15,15 @@ Stripe Integration
   token. Rails should save customer token and user information to our database.
 
 User interface
-* Users should be redirected to the correct page with a plan id when they fail
+*==> Users should be redirected to the correct page with a plan id when they fail
   to enter a valid email/password combination
 * Devise validation should happen before Stripe validation to prevent sending 
   card information to Stripe if they entered a wrong email/password combination
 * Javascript and Devise alert when entering wrong information should look better
+
+User profiles
+* Each user should have one profile
+* User should see link to new profile form upon signing up
+* User should be able to create and view their user profile
+* User profile should have a profile picture
+* User should be able to view all user profiles
