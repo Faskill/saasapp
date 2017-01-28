@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   # GET to users/:user_id/profile/new
   def new
     # Render form to create new profile
+    @profile = Profile.new
   end
   
   def show

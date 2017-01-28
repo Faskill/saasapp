@@ -1,3 +1,3 @@
 # README
 
-Basic Ruby on Rails App for Learning Purposes
+Basic Ruby on Rails App for Learning Purposesc
